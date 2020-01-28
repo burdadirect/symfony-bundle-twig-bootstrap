@@ -1,6 +1,6 @@
 <?php
 
-namespace HBM\TwigBootstrapBundle\Utils\Bootstrap;
+namespace HBM\TwigBootstrapBundle\Utils;
 
 use HBM\TwigAttributesBundle\Utils\HtmlAttributes;
 

@@ -2,8 +2,8 @@
 
 namespace HBM\TwigBootstrapBundle\Twig;
 
-use HBM\TwigBootstrapBundle\Utils\Bootstrap\BootstrapDropdownItem;
-use HBM\TwigBootstrapBundle\Utils\Bootstrap\BootstrapLink;
+use HBM\TwigBootstrapBundle\Utils\BootstrapDropdownItem;
+use HBM\TwigBootstrapBundle\Utils\BootstrapLink;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 use Twig\TwigTest;
