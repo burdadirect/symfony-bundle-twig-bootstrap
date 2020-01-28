@@ -1,0 +1,12 @@
+parameters:
+
+services:
+    _defaults:
+        public: true
+
+    # TWIG
+    hbm.twig_bootsrap:
+        class: HBM\TwigBootstrapBundle\Twig\BootstrapExtension
+        arguments: ['%hbm.twig_bootstrap%']
+        tags:
+            - { name: twig.extension }

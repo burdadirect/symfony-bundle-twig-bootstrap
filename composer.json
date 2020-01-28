@@ -1,0 +1,33 @@
+{
+  "name": "burdanews/symfony-bundle-twig-bootstrap",
+  "description": "HBM Twig Bootstrap Bundle - Bootstrap helper for twig.",
+  "authors" : [{
+    "name" : "Christian Puchinger",
+    "email" : "christian.puchinger@burda.com"
+  }],
+  "license": "MIT",
+  "type": "symfony-bundle",
+  "autoload": {
+    "psr-0": {
+      "HBM\\TwigBootstrapBundle": ""
+    }
+  },
+  "repositories" : [
+    {
+      "type": "vcs",
+      "url": "git@github.com:burdanews/symfony-bundle-twig-attributes.git"
+    }
+  ],
+  "require": {
+    "php": ">=7.3",
+    "burdanews/symfony-bundle-twig-attributes": "dev-master",
+    "symfony/config": "^4.4",
+    "symfony/dependency-injection": "^4.4",
+    "symfony/twig-bundle": "^4.4"
+
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-master"
+  },
+  "target-dir": "HBM/TwigBootstrapBundle"
+}
