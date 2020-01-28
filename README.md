@@ -91,9 +91,22 @@ Available for:
 
 #### Output
 ```html
-  TODO
+<div class="dropdown">
+    <button class="btn-primary btn dropdown-toggle" title="Dropdown Text" id="5e30b82698df1-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="btn-text"><span class="fa-plus fas"></span>&nbsp;Dropdown Text</span>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="5e30b82698df1-dropdown">
+        <div class="dropdown-header">Header 1</div>
+        <a class="dropdown-item" href="...">Text 1</a>
+        <a class="dropdown-item" href="...">Text 2</a>
+        <div class="dropdown-header">Header 2</div>
+        <a class="dropdown-item" href="...">Text 3</a>
+        <a class="dropdown-item" href="...">Text 4</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="...">Text 5</a>
+    </div>
+</div>
 ```
-
 
 ### Nav-Item
 

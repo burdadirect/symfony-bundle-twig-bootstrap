@@ -28,6 +28,7 @@ class BootstrapExtension extends AbstractExtension {
 
   public function getFunctions() : array {
     return [
+      new TwigFunction('bsUuid', [$this, 'bsUuid']),
       new TwigFunction('bsLink', [$this, 'bsLink']),
       new TwigFunction('bsDropdownItem', [$this, 'bsDropdownItem']),
     ];
@@ -38,7 +39,19 @@ class BootstrapExtension extends AbstractExtension {
   /****************************************************************************/
 
   /**
+   * @param null $postfix
+   * @param null $prefix
+   * @param bool $more_entropy
+   *
+   * @return string
+   */
+  public function bsUuid($postfix = NULL, $prefix = NULL, $more_entropy = FALSE) {
+    return uniqid($prefix, $more_entropy).$postfix;
+  }
+
+  /**
    * @param null|string $text
+   *
    * @return BootstrapLink
    */
   public function bsLink($text = NULL) : BootstrapLink {
@@ -47,6 +60,7 @@ class BootstrapExtension extends AbstractExtension {
 
   /**
    * @param null|string $text
+   *
    * @return BootstrapDropdownItem
    */
   public function bsDropdownItem($text = NULL) : BootstrapDropdownItem {
@@ -59,6 +73,7 @@ class BootstrapExtension extends AbstractExtension {
 
   /**
    * @param $var
+   *
    * @return bool
    */
   public function isBsLink($var) : bool {
@@ -67,6 +82,7 @@ class BootstrapExtension extends AbstractExtension {
 
   /**
    * @param $var
+   *
    * @return bool
    */
   public function isBsDropdownItem($var) : bool {
