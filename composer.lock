@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7fe6951e5d752eec2e85dc3ad66b059f",
+    "content-hash": "5ff997c1afe22f497eb3d978c603a870",
     "packages": [
         {
             "name": "burdanews/symfony-bundle-twig-attributes",
@@ -13,20 +13,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/burdanews/symfony-bundle-twig-attributes.git",
-                "reference": "68e0e69a2047180130403efb5289a559ffb371bd"
+                "reference": "f23278ff319155a27864e8cf7bbad6a24dcf9290"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/burdanews/symfony-bundle-twig-attributes/zipball/68e0e69a2047180130403efb5289a559ffb371bd",
-                "reference": "68e0e69a2047180130403efb5289a559ffb371bd",
+                "url": "https://api.github.com/repos/burdanews/symfony-bundle-twig-attributes/zipball/f23278ff319155a27864e8cf7bbad6a24dcf9290",
+                "reference": "f23278ff319155a27864e8cf7bbad6a24dcf9290",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "php": ">=7.3",
-                "symfony/config": "^4.4",
-                "symfony/dependency-injection": "^4.4",
-                "symfony/twig-bundle": "^4.4"
+                "symfony/config": "^3.4|^4.4",
+                "symfony/dependency-injection": "^3.4|^4.4",
+                "symfony/twig-bundle": "^3.4|^4.4"
             },
             "require-dev": {
                 "roave/security-advisories": "dev-master"
@@ -51,7 +51,7 @@
                 "source": "https://github.com/burdanews/symfony-bundle-twig-attributes/tree/master",
                 "issues": "https://github.com/burdanews/symfony-bundle-twig-attributes/issues"
             },
-            "time": "2020-01-28T21:25:12+00:00"
+            "time": "2020-01-29T14:02:09+00:00"
         },
         {
             "name": "psr/container",
