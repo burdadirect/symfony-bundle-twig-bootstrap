@@ -1,0 +1,5 @@
+{% import '@HBMTwigBootstrap/macrosBootstrapInternal.html.twig' as mbi %}
+
+<li {{ attributes(attributesContainer).class('nav-item')|raw }}>
+  <a {{ bsLink.attributes.class('nav-link')|raw }}>{{ mbi.icons(bsLink.icons, bsLink.text) }}{{ bsLink.text|raw }}</a>
+</li>

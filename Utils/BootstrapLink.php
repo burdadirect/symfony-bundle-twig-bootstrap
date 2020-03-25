@@ -2,17 +2,7 @@
 
 namespace HBM\TwigBootstrapBundle\Utils;
 
-use HBM\TwigAttributesBundle\Utils\HtmlAttributes;
-use HBM\TwigAttributesBundle\Utils\HtmlAttributesTrait;
-
-class BootstrapLink {
-
-  use HtmlAttributesTrait;
-
-  /**
-   * @var array
-   */
-  protected $config;
+class BootstrapLink extends BootstrapItem {
 
   /**
    * @var string[]
@@ -25,14 +15,14 @@ class BootstrapLink {
   private $text;
 
   /**
-   * @var HtmlAttributes
+   * BootstrapLink constructor.
+   *
+   * @param string|null $text
+   * @param array $config
    */
-  private $attributes;
-
   public function __construct($text = NULL, array $config = []) {
-    $this->config = $config;
+    parent::__construct($config);
     $this->text = $text;
-    $this->attributes = new HtmlAttributes();
   }
 
   /**
@@ -134,40 +124,6 @@ class BootstrapLink {
 
   public function getText() : ?string {
     return $this->text;
-  }
-
-  /****************************************************************************/
-
-  public function attr($key, $value) {
-    $this->getAttributes()->set($key, $value);
-
-    return $this;
-  }
-
-  public function attributes() {
-    if (func_num_args() === 0) {
-      return $this->attributes;
-    }
-
-    if (func_num_args() === 1) {
-      $this->setAttributes(new HtmlAttributes(func_get_arg(0)));
-    }
-
-    return $this;
-  }
-
-  public function setAttributes(HtmlAttributes $attributes) : self {
-    $this->attributes = $attributes;
-
-    return $this;
-  }
-
-  public function getAttributes() : HtmlAttributes {
-    return $this->attributes;
-  }
-
-  public function getAttributesObject() : HtmlAttributes {
-    return $this->attributes;
   }
 
 }

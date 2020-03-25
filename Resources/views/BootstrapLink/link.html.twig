@@ -1,0 +1,3 @@
+{% import '@HBMTwigBootstrap/macrosBootstrapInternal.html.twig' as mbi %}
+
+<a {{ bsLink.attributes|raw }}><span class="btn-text">{{ mbi.icons(bsLink.icons, bsLink.text) }}{{ bsLink.text|raw }}</span></a>

@@ -2,9 +2,14 @@
 
 namespace HBM\TwigBootstrapBundle\Twig;
 
+use HBM\TwigAttributesBundle\Utils\HtmlAttributes;
 use HBM\TwigBootstrapBundle\Utils\BootstrapDropdownItem;
+use HBM\TwigBootstrapBundle\Utils\BootstrapGroup;
+use HBM\TwigBootstrapBundle\Utils\BootstrapItem;
 use HBM\TwigBootstrapBundle\Utils\BootstrapLink;
+use Twig\Environment;
 use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 use Twig\TwigFunction;
 use Twig\TwigTest;
 
@@ -19,10 +24,28 @@ class BootstrapExtension extends AbstractExtension {
     $this->config = $config;
   }
 
+  public function getFilters() : array {
+    $renderOptions = ['needs_environment' => true, 'is_safe' => ['html']];
+
+    return [
+      new TwigFilter('bsDropdownStandalone', [$this, 'bsRenderDropdownStandalone'], $renderOptions),
+      new TwigFilter('bsDropdownButtonGroup', [$this, 'bsRenderDropdownButtonGroup'], $renderOptions),
+      new TwigFilter('bsButtonGroup', [$this, 'bsRenderButtonGroup'], $renderOptions),
+
+      new TwigFilter('bsLink',    [$this, 'bsRenderLink'],        $renderOptions),
+      new TwigFilter('bsButton',  [$this, 'bsRenderButton'],  $renderOptions),
+      new TwigFilter('bsNavItem', [$this, 'bsRenderNavItem'], $renderOptions),
+      new TwigFilter('bsBtn',     [$this, 'bsRenderBtn'],     $renderOptions),
+      new TwigFilter('bsBtn1',    [$this, 'bsRenderBtn1'],    $renderOptions),
+      new TwigFilter('bsBtn2',    [$this, 'bsRenderBtn2'],    $renderOptions),
+    ];
+  }
+
   public function getTests() : array {
     return [
-      'bsLink' => new TwigTest('bsLink', [$this, 'isBsLink']),
-      'bsDropdownItem' => new TwigTest('bsDropdownItem', [$this, 'isBsDropdownItem']),
+      new TwigTest('bsLink', [$this, 'isBsLink']),
+      new TwigTest('bsGroup', [$this, 'isBsGroup']),
+      new TwigTest('bsDropdownItem', [$this, 'isBsDropdownItem']),
     ];
   }
 
@@ -30,8 +53,194 @@ class BootstrapExtension extends AbstractExtension {
     return [
       new TwigFunction('bsUuid', [$this, 'bsUuid']),
       new TwigFunction('bsLink', [$this, 'bsLink']),
+      new TwigFunction('bsGroup', [$this, 'bsGroup']),
       new TwigFunction('bsDropdownItem', [$this, 'bsDropdownItem']),
     ];
+  }
+
+  /****************************************************************************/
+  /* FILTERS                                                                  */
+  /****************************************************************************/
+
+  /**
+   * @param Environment $environment
+   * @param BootstrapLink $bsLink
+   * @param string $template
+   * @param array $data
+   *
+   * @return string|null
+   *
+   * @throws \Twig\Error\LoaderError
+   * @throws \Twig\Error\RuntimeError
+   * @throws \Twig\Error\SyntaxError
+   */
+  private function bsRenderBootstrapLink(Environment $environment, BootstrapLink $bsLink, string $template = NULL, array $data = []) : ?string {
+    return $environment->render(
+      $template ?: '@HBMTwigBootstrap/BootstrapLink/link.html.twig',
+      array_merge($data, ['bsLink' => $bsLink])
+    );
+  }
+
+  /**
+   * @param Environment $environment
+   * @param BootstrapLink $bsLink
+   *
+   * @return string|null
+   *
+   * @throws \Twig\Error\LoaderError
+   * @throws \Twig\Error\RuntimeError
+   * @throws \Twig\Error\SyntaxError
+   */
+  public function bsRenderLink(Environment $environment, BootstrapLink $bsLink) : ?string {
+    return $this->bsRenderBootstrapLink($environment, $bsLink);
+  }
+
+  /**
+   * @param Environment $environment
+   * @param BootstrapLink $bsLink
+   *
+   * @return string|null
+   *
+   * @throws \Twig\Error\LoaderError
+   * @throws \Twig\Error\RuntimeError
+   * @throws \Twig\Error\SyntaxError
+   */
+  public function bsRenderButton(Environment $environment, BootstrapLink $bsLink) : ?string {
+    return $this->bsRenderBootstrapLink($environment, $bsLink, '@HBMTwigBootstrap/BootstrapLink/button.html.twig');
+  }
+
+  /**
+   * @param Environment $environment
+   * @param BootstrapLink $bsLink
+   * @param array|HtmlAttributes $attributesContainer
+   *
+   * @return string|null
+   *
+   * @throws \Twig\Error\LoaderError
+   * @throws \Twig\Error\RuntimeError
+   * @throws \Twig\Error\SyntaxError
+   */
+  public function bsRenderNavItem(Environment $environment, BootstrapLink $bsLink, $attributesContainer = []) : ?string {
+    return $this->bsRenderBootstrapLink($environment, $bsLink, '@HBMTwigBootstrap/BootstrapLink/nav-item.html.twig', ['attributesContainer' => $attributesContainer]);
+  }
+
+  /**
+   * @param Environment $environment
+   * @param BootstrapLink $bsLink
+   *
+   * @return string|null
+   *
+   * @throws \Twig\Error\LoaderError
+   * @throws \Twig\Error\RuntimeError
+   * @throws \Twig\Error\SyntaxError
+   */
+  public function bsRenderBtn(Environment $environment, BootstrapLink $bsLink) : ?string {
+    return $this->bsRenderBootstrapLink($environment, $bsLink->class('btn'));
+  }
+
+  /**
+   * @param Environment $environment
+   * @param BootstrapLink $bsLink
+   *
+   * @return string|null
+   *
+   * @throws \Twig\Error\LoaderError
+   * @throws \Twig\Error\RuntimeError
+   * @throws \Twig\Error\SyntaxError
+   */
+  public function bsRenderBtn1(Environment $environment, BootstrapLink $bsLink) : ?string {
+    return $this->bsRenderBootstrapLink($environment, $bsLink->class('btn btn-primary'));
+  }
+
+  /**
+   * @param Environment $environment
+   * @param BootstrapLink $bsLink
+   *
+   * @return string|null
+   *
+   * @throws \Twig\Error\LoaderError
+   * @throws \Twig\Error\RuntimeError
+   * @throws \Twig\Error\SyntaxError
+   */
+  public function bsRenderBtn2(Environment $environment, BootstrapLink $bsLink) : ?string {
+    return $this->bsRenderBootstrapLink($environment, $bsLink->class('btn btn-secondary'));
+  }
+
+  /**
+   * @param Environment $environment
+   * @param BootstrapGroup $bsGroup
+   * @param BootstrapLink|null $bsLink
+   * @param HtmlAttributes|array $attributesMenu
+   *
+   * @return string|null
+   *
+   * @throws \Twig\Error\LoaderError
+   * @throws \Twig\Error\RuntimeError
+   * @throws \Twig\Error\SyntaxError
+   */
+  private function bsRenderDropdown(Environment $environment, BootstrapGroup $bsGroup, BootstrapLink $bsLink = NULL, $attributesMenu = []) : ?string {
+    return $environment->render('@HBMTwigBootstrap/BootstrapGroup/dropdown.html.twig', [
+      'bsGroup' => $bsGroup,
+      'bsLink' => $bsLink,
+      'attributesMenu' => $attributesMenu,
+    ]);
+  }
+
+  /**
+   * @param Environment $environment
+   * @param BootstrapGroup $bsGroup
+   * @param BootstrapLink|null $bsLink
+   * @param array $attributesMenu
+   *
+   * @return string|null
+   *
+   * @throws \Twig\Error\LoaderError
+   * @throws \Twig\Error\RuntimeError
+   * @throws \Twig\Error\SyntaxError
+   */
+  public function bsRenderDropdownStandalone(Environment $environment, BootstrapGroup $bsGroup, BootstrapLink $bsLink = NULL, $attributesMenu = []) : ?string {
+    $bsGroup->class('dropdown');
+    return $this->bsRenderDropdown($environment, $bsGroup, $bsLink, $attributesMenu);
+  }
+
+  /**
+   * @param Environment $environment
+   * @param BootstrapGroup $bsGroup
+   * @param BootstrapLink|null $bsLink
+   * @param array $attributesMenu
+   *
+   * @return string|null
+   *
+   * @throws \Twig\Error\LoaderError
+   * @throws \Twig\Error\RuntimeError
+   * @throws \Twig\Error\SyntaxError
+   */
+  public function bsRenderDropdownButtonGroup(Environment $environment, BootstrapGroup $bsGroup, BootstrapLink $bsLink = NULL, $attributesMenu = []) : ?string {
+    $bsGroup->class('btn-group')->attr('role', 'group');
+    return $this->bsRenderDropdown($environment, $bsGroup, $bsLink, $attributesMenu);
+  }
+
+  /**
+   * @param Environment $environment
+   * @param BootstrapGroup $bsGroup
+   *
+   * @return string|null
+   *
+   * @throws \Twig\Error\LoaderError
+   * @throws \Twig\Error\RuntimeError
+   * @throws \Twig\Error\SyntaxError
+   */
+  public function bsRenderButtonGroup(Environment $environment, BootstrapGroup $bsGroup) : ?string {
+    $attributes = $bsGroup->attributes();
+    $attributes->set('role', 'group');
+    $attributes->setIfEmpty('aria-label', $bsGroup->title() ?: 'Button-Gruppe');
+    if (!$attributes->hasClass('btn-group') && !$attributes->hasClass('btn-group-vertical')) {
+      $bsGroup->class('btn-group');
+    }
+
+    return $environment->render('@HBMTwigBootstrap/BootstrapGroup/button-group.html.twig', [
+      'bsGroup' => $bsGroup,
+    ]);
   }
 
   /****************************************************************************/
@@ -59,6 +268,15 @@ class BootstrapExtension extends AbstractExtension {
   }
 
   /**
+   * @param null|string $mode
+   *
+   * @return BootstrapGroup
+   */
+  public function bsGroup($mode = NULL) : BootstrapGroup {
+    return new BootstrapGroup($mode, $this->config);
+  }
+
+  /**
    * @param null|string $text
    *
    * @return BootstrapDropdownItem
@@ -78,6 +296,15 @@ class BootstrapExtension extends AbstractExtension {
    */
   public function isBsLink($var) : bool {
     return $var instanceof BootstrapLink;
+  }
+
+  /**
+   * @param $var
+   *
+   * @return bool
+   */
+  public function isBsGroup($var) : bool {
+    return $var instanceof BootstrapGroup;
   }
 
   /**

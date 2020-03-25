@@ -1,0 +1,9 @@
+<div {{ bsGroup.attributes|raw }}>
+  {% for item in bsGroup.items %}
+    {% if item is string %}
+      {{ item|raw }}
+    {% else %}
+      {{ item|bsBtn }}
+    {% endif %}
+  {% endfor %}
+</div>
