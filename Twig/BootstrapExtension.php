@@ -28,6 +28,7 @@ class BootstrapExtension extends AbstractExtension {
     $renderOptions = ['needs_environment' => true, 'is_safe' => ['html']];
 
     return [
+      new TwigFilter('bsDropdownNavItem', [$this, 'bsRenderDropdownNavItem'], $renderOptions),
       new TwigFilter('bsDropdownStandalone', [$this, 'bsRenderDropdownStandalone'], $renderOptions),
       new TwigFilter('bsDropdownButtonGroup', [$this, 'bsRenderDropdownButtonGroup'], $renderOptions),
       new TwigFilter('bsButtonGroup', [$this, 'bsRenderButtonGroup'], $renderOptions),
@@ -171,6 +172,7 @@ class BootstrapExtension extends AbstractExtension {
    * @param BootstrapGroup $bsGroup
    * @param BootstrapLink|null $bsLink
    * @param HtmlAttributes|array $attributesMenu
+   * @param string $htmlTag
    *
    * @return string|null
    *
@@ -178,12 +180,31 @@ class BootstrapExtension extends AbstractExtension {
    * @throws \Twig\Error\RuntimeError
    * @throws \Twig\Error\SyntaxError
    */
-  private function bsRenderDropdown(Environment $environment, BootstrapGroup $bsGroup, BootstrapLink $bsLink = NULL, $attributesMenu = []) : ?string {
+  private function bsRenderDropdown(Environment $environment, BootstrapGroup $bsGroup, BootstrapLink $bsLink = NULL, $attributesMenu = [], $htmlTag = 'div') : ?string {
     return $environment->render('@HBMTwigBootstrap/BootstrapGroup/dropdown.html.twig', [
       'bsGroup' => $bsGroup,
       'bsLink' => $bsLink,
       'attributesMenu' => $attributesMenu,
+      'htmlTag' => $htmlTag,
     ]);
+  }
+
+  /**
+   * @param Environment $environment
+   * @param BootstrapGroup $bsGroup
+   * @param BootstrapLink|null $bsLink
+   * @param array $attributesMenu
+   *
+   * @return string|null
+   *
+   * @throws \Twig\Error\LoaderError
+   * @throws \Twig\Error\RuntimeError
+   * @throws \Twig\Error\SyntaxError
+   */
+  public function bsRenderDropdownNavItem(Environment $environment, BootstrapGroup $bsGroup, BootstrapLink $bsLink = NULL, $attributesMenu = []) : ?string {
+    $bsGroup->class('nav-item dropdown');
+    $bsLink->class('nav-link')->href('#');
+    return $this->bsRenderDropdown($environment, $bsGroup, $bsLink, $attributesMenu, 'li');
   }
 
   /**
@@ -200,6 +221,7 @@ class BootstrapExtension extends AbstractExtension {
    */
   public function bsRenderDropdownStandalone(Environment $environment, BootstrapGroup $bsGroup, BootstrapLink $bsLink = NULL, $attributesMenu = []) : ?string {
     $bsGroup->class('dropdown');
+    $bsLink->class('btn')->attr('type', 'button');
     return $this->bsRenderDropdown($environment, $bsGroup, $bsLink, $attributesMenu);
   }
 
@@ -217,6 +239,7 @@ class BootstrapExtension extends AbstractExtension {
    */
   public function bsRenderDropdownButtonGroup(Environment $environment, BootstrapGroup $bsGroup, BootstrapLink $bsLink = NULL, $attributesMenu = []) : ?string {
     $bsGroup->class('btn-group')->attr('role', 'group');
+    $bsLink->class('btn')->attr('type', 'button');
     return $this->bsRenderDropdown($environment, $bsGroup, $bsLink, $attributesMenu);
   }
 

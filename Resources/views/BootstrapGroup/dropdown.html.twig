@@ -1,20 +1,20 @@
 {% import '@HBMTwigBootstrap/macrosBootstrapInternal.html.twig' as mbi %}
 
-{%- set attributes = bsLink.attributes.class('btn dropdown-toggle') -%}
+{%- set attributes = bsLink.attributes.class('dropdown-toggle') -%}
 {%- set attributes = attributes.setIfEmpty('title', bsLink.text|striptags) -%}
 {%- set attributes = attributes.set('id', bsUuid('-dropdown')) -%}
-{%- set attributes = attributes.set('type', 'button').set('data-toggle', 'dropdown') -%}
+{%- set attributes = attributes.set('data-toggle', 'dropdown') -%}
 {%- set attributes = attributes.set('aria-haspopup', 'true').set('aria-expanded', 'false') -%}
 
 {%- set attributesMenu = attributes(attributesMenu) -%}
 {%- set attributesMenu = attributesMenu.class('dropdown-menu') -%}
 {%- set attributesMenu = attributesMenu.set('aria-labelledby', attributes.get('id')) -%}
 
-<div {{ bsGroup.attributes|raw }}>
-  {{ bsLink|bsButton }}
+<{{ htmlTag }} {{ bsGroup.attributes|raw }}>
+  {{ bsLink.attributes.hasClass('nav-link') ? bsLink|bsLink : bsLink|bsButton }}
   <div {{ attributesMenu|raw }}>
     {% for item in bsGroup.items %}
       {{ mbi.dropdownItem(item) }}
     {% endfor %}
   </div>
-</div>
+</{{ htmlTag }}>

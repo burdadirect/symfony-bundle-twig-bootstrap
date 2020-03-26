@@ -86,6 +86,19 @@ class BootstrapGroup extends BootstrapItem {
   }
 
   /**
+   * Set items.
+   *
+   * @param array $items
+   *
+   * @return self
+   */
+  public function setItems(array $items) : self {
+    $this->items = $items;
+
+    return $this;
+  }
+
+  /**
    * Get items.
    *
    * @return array
