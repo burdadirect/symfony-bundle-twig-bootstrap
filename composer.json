@@ -9,7 +9,7 @@
   "type": "symfony-bundle",
   "autoload": {
     "psr-4": {
-      "HBM\\TwigBootstrapBundle": ""
+      "HBM\\TwigBootstrapBundle": "HBM/TwigBootstrapBundle"
     }
   },
   "repositories" : [
@@ -28,6 +28,5 @@
   },
   "require-dev": {
     "roave/security-advisories": "dev-master"
-  },
-  "target-dir": "HBM/TwigBootstrapBundle"
+  }
 }
