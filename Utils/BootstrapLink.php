@@ -128,8 +128,8 @@ class BootstrapLink extends BootstrapItem {
 
   /****************************************************************************/
 
-  public function disabled($value) : self {
-    if ($value) {
+  public function disabled() : self {
+    if ((func_num_args() === 0) || func_get_arg(0)) {
       $this->getAttributes()->disabled();
       $this->attr('aria-disabled', true);
       $this->class('disabled');
