@@ -5,7 +5,6 @@ namespace HBM\TwigBootstrapBundle\Twig;
 use HBM\TwigAttributesBundle\Utils\HtmlAttributes;
 use HBM\TwigBootstrapBundle\Utils\BootstrapDropdownItem;
 use HBM\TwigBootstrapBundle\Utils\BootstrapGroup;
-use HBM\TwigBootstrapBundle\Utils\BootstrapItem;
 use HBM\TwigBootstrapBundle\Utils\BootstrapLink;
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
@@ -33,9 +32,10 @@ class BootstrapExtension extends AbstractExtension {
       new TwigFilter('bsDropdownButtonGroup', [$this, 'bsRenderDropdownButtonGroup'], $renderOptions),
       new TwigFilter('bsButtonGroup', [$this, 'bsRenderButtonGroup'], $renderOptions),
 
-      new TwigFilter('bsLink',    [$this, 'bsRenderLink'],        $renderOptions),
+      new TwigFilter('bsLink',    [$this, 'bsRenderLink'],    $renderOptions),
       new TwigFilter('bsButton',  [$this, 'bsRenderButton'],  $renderOptions),
       new TwigFilter('bsNavItem', [$this, 'bsRenderNavItem'], $renderOptions),
+      new TwigFilter('bsNavBtn',  [$this, 'bsRenderNavBtn'],  $renderOptions),
       new TwigFilter('bsBtn',     [$this, 'bsRenderBtn'],     $renderOptions),
       new TwigFilter('bsBtn1',    [$this, 'bsRenderBtn1'],    $renderOptions),
       new TwigFilter('bsBtn2',    [$this, 'bsRenderBtn2'],    $renderOptions),
@@ -123,6 +123,28 @@ class BootstrapExtension extends AbstractExtension {
    */
   public function bsRenderNavItem(Environment $environment, BootstrapLink $bsLink, $attributesContainer = []) : ?string {
     return $this->bsRenderBootstrapLink($environment, $bsLink, '@HBMTwigBootstrap/BootstrapLink/nav-item.html.twig', ['attributesContainer' => $attributesContainer]);
+  }
+
+  /**
+   * @param Environment $environment
+   * @param BootstrapLink $bsLink
+   * @param array|HtmlAttributes $attributesContainer
+   * @param null $prefix
+   * @param null $suffix
+   *
+   * @return string|null
+   *
+   * @throws \Twig\Error\LoaderError
+   * @throws \Twig\Error\RuntimeError
+   * @throws \Twig\Error\SyntaxError
+   */
+  public function bsRenderNavBtn(Environment $environment, BootstrapLink $bsLink, $attributesContainer = [], $prefix = NULL, $suffix = NULL) : ?string {
+
+    return $this->bsRenderBootstrapLink($environment, $bsLink->class('btn'), '@HBMTwigBootstrap/BootstrapLink/nav-item.html.twig', [
+      'attributesContainer' => $attributesContainer,
+      'prefix' => $prefix.'<span class="btn-text">',
+      'suffix' => '</span>'.$suffix
+    ]);
   }
 
   /**

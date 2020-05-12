@@ -2,7 +2,11 @@
 
 namespace HBM\TwigBootstrapBundle\Utils;
 
+use HBM\TwigAttributesBundle\Utils\HtmlTagTrait;
+
 class BootstrapLink extends BootstrapItem {
+
+  use HtmlTagTrait;
 
   /**
    * @var string[]
@@ -22,6 +26,7 @@ class BootstrapLink extends BootstrapItem {
    */
   public function __construct($text = NULL, array $config = []) {
     parent::__construct($config);
+    $this->tag = 'a';
     $this->text = $text;
   }
 
@@ -136,6 +141,15 @@ class BootstrapLink extends BootstrapItem {
     }
 
     return $this;
+  }
+
+  /****************************************************************************/
+
+  /**
+   * @return string
+   */
+  protected function renderAttributes(): string {
+    return (string) $this->getAttributes();
   }
 
 }
