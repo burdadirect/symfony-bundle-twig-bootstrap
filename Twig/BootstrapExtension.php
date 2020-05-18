@@ -32,6 +32,7 @@ class BootstrapExtension extends AbstractExtension {
       new TwigFilter('bsDropdownButtonGroup', [$this, 'bsRenderDropdownButtonGroup'], $renderOptions),
       new TwigFilter('bsButtonGroup', [$this, 'bsRenderButtonGroup'], $renderOptions),
 
+      new TwigFilter('bsSpan',    [$this, 'bsRenderSpan'],    $renderOptions),
       new TwigFilter('bsLink',    [$this, 'bsRenderLink'],    $renderOptions),
       new TwigFilter('bsButton',  [$this, 'bsRenderButton'],  $renderOptions),
       new TwigFilter('bsNavItem', [$this, 'bsRenderNavItem'], $renderOptions),
@@ -77,7 +78,7 @@ class BootstrapExtension extends AbstractExtension {
    */
   private function bsRenderBootstrapLink(Environment $environment, BootstrapLink $bsLink, string $template = NULL, array $data = []) : ?string {
     return $environment->render(
-      $template ?: '@HBMTwigBootstrap/BootstrapLink/link.html.twig',
+      $template ?: '@HBMTwigBootstrap/BootstrapLink/generic.html.twig',
       array_merge($data, ['bsLink' => $bsLink])
     );
   }
@@ -106,8 +107,23 @@ class BootstrapExtension extends AbstractExtension {
    * @throws \Twig\Error\RuntimeError
    * @throws \Twig\Error\SyntaxError
    */
+  public function bsRenderSpan(Environment $environment, BootstrapLink $bsLink) : ?string {
+    return $this->bsRenderBootstrapLink($environment, $bsLink, NULL, ['tag' => 'span']);
+  }
+
+
+  /**
+   * @param Environment $environment
+   * @param BootstrapLink $bsLink
+   *
+   * @return string|null
+   *
+   * @throws \Twig\Error\LoaderError
+   * @throws \Twig\Error\RuntimeError
+   * @throws \Twig\Error\SyntaxError
+   */
   public function bsRenderButton(Environment $environment, BootstrapLink $bsLink) : ?string {
-    return $this->bsRenderBootstrapLink($environment, $bsLink, '@HBMTwigBootstrap/BootstrapLink/button.html.twig');
+    return $this->bsRenderBootstrapLink($environment, $bsLink->class('btn'), NULL, ['tag' => 'button']);
   }
 
   /**
