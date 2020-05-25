@@ -32,14 +32,16 @@ class BootstrapExtension extends AbstractExtension {
       new TwigFilter('bsDropdownButtonGroup', [$this, 'bsRenderDropdownButtonGroup'], $renderOptions),
       new TwigFilter('bsButtonGroup', [$this, 'bsRenderButtonGroup'], $renderOptions),
 
-      new TwigFilter('bsSpan',    [$this, 'bsRenderSpan'],    $renderOptions),
-      new TwigFilter('bsLink',    [$this, 'bsRenderLink'],    $renderOptions),
-      new TwigFilter('bsButton',  [$this, 'bsRenderButton'],  $renderOptions),
-      new TwigFilter('bsNavItem', [$this, 'bsRenderNavItem'], $renderOptions),
-      new TwigFilter('bsNavBtn',  [$this, 'bsRenderNavBtn'],  $renderOptions),
-      new TwigFilter('bsBtn',     [$this, 'bsRenderBtn'],     $renderOptions),
-      new TwigFilter('bsBtn1',    [$this, 'bsRenderBtn1'],    $renderOptions),
-      new TwigFilter('bsBtn2',    [$this, 'bsRenderBtn2'],    $renderOptions),
+      new TwigFilter('bsSpan',     [$this, 'bsRenderSpan'],     $renderOptions),
+      new TwigFilter('bsLink',     [$this, 'bsRenderLink'],     $renderOptions),
+      new TwigFilter('bsButton',   [$this, 'bsRenderButton'],   $renderOptions),
+      new TwigFilter('bsNavItem',  [$this, 'bsRenderNavItem'],  $renderOptions),
+      new TwigFilter('bsNavItem1', [$this, 'bsRenderNavItem1'], $renderOptions),
+      new TwigFilter('bsNavItem2', [$this, 'bsRenderNavItem2'], $renderOptions),
+      new TwigFilter('bsNavBtn',   [$this, 'bsRenderNavBtn'],   $renderOptions),
+      new TwigFilter('bsBtn',      [$this, 'bsRenderBtn'],      $renderOptions),
+      new TwigFilter('bsBtn1',     [$this, 'bsRenderBtn1'],     $renderOptions),
+      new TwigFilter('bsBtn2',     [$this, 'bsRenderBtn2'],     $renderOptions),
     ];
   }
 
@@ -139,6 +141,36 @@ class BootstrapExtension extends AbstractExtension {
    */
   public function bsRenderNavItem(Environment $environment, BootstrapLink $bsLink, $attributesContainer = []) : ?string {
     return $this->bsRenderBootstrapLink($environment, $bsLink, '@HBMTwigBootstrap/BootstrapLink/nav-item.html.twig', ['attributesContainer' => $attributesContainer]);
+  }
+
+  /**
+   * @param Environment $environment
+   * @param BootstrapLink $bsLink
+   * @param array|HtmlAttributes $attributesContainer
+   *
+   * @return string|null
+   *
+   * @throws \Twig\Error\LoaderError
+   * @throws \Twig\Error\RuntimeError
+   * @throws \Twig\Error\SyntaxError
+   */
+  public function bsRenderNavItem1(Environment $environment, BootstrapLink $bsLink, $attributesContainer = []) : ?string {
+    return $this->bsRenderNavItem($environment, $bsLink->class('btn btn-primary'), $attributesContainer);
+  }
+
+  /**
+   * @param Environment $environment
+   * @param BootstrapLink $bsLink
+   * @param array|HtmlAttributes $attributesContainer
+   *
+   * @return string|null
+   *
+   * @throws \Twig\Error\LoaderError
+   * @throws \Twig\Error\RuntimeError
+   * @throws \Twig\Error\SyntaxError
+   */
+  public function bsRenderNavItem2(Environment $environment, BootstrapLink $bsLink, $attributesContainer = []) : ?string {
+    return $this->bsRenderNavItem($environment, $bsLink->class('btn btn-secondary'), $attributesContainer);
   }
 
   /**
