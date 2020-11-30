@@ -33,7 +33,7 @@ class BootstrapGroup extends BootstrapItem {
   /**
    * Set mode.
    *
-   * @param string $mode
+   * @param string|null $mode
    *
    * @return self
    */
