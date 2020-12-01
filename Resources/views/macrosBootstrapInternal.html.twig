@@ -31,35 +31,12 @@
     </button>
     <div {{ attributesMenu|raw }}>
 {% for item in items %}
-    {{ self.dropdownItem(item) }}
-{% endfor %}
-    </div>
-  </div>
-{% endmacro %}
-
-{# -------------------------------------------------------------------------- #}
-
-{% macro dropdownItem(item) %}
   {% if item is string %}
     {{ item|raw }}
   {% else %}
-    {% import _self as self %}
-
-    {% if item is not bsDropdownItem %}
-      {% set item = bsDropdownItem().apply(item) %}
-    {% endif %}
-
-    {% set attributes = item. attributes %}
-
-    {% if item.divider %}
-      <div {{ attributes.class('dropdown-divider')|raw }}></div>
-    {% elseif item.header %}
-      <div {{ attributes.class('dropdown-header')|raw }}>{{ item.header|raw }}</div>
-    {% else %}
-      {% if attributes.get('disabled') %}
-        {% set attributes = attributes.class('disabled').set('aria-disabled', 'true') %}
-      {% endif %}
-      <a {{ attributes.class('dropdown-item')|raw }}>{{- self.icons(item.icons, item.text) -}}{{- item.text|raw -}}</a>
-    {% endif %}
+    {{ item|bsDropdownItem }}
   {% endif %}
+{% endfor %}
+    </div>
+  </div>
 {% endmacro %}

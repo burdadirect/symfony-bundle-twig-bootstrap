@@ -1,0 +1,14 @@
+{% import '@HBMTwigBootstrap/macrosBootstrapInternal.html.twig' as mbi %}
+
+{% set attributes = item.attributes %}
+
+{% if item.divider %}
+  <div {{ attributes.class('dropdown-divider')|raw }}></div>
+{% elseif item.header %}
+  <div {{ attributes.class('dropdown-header')|raw }}>{{ item.header|raw }}</div>
+{% else %}
+  {% if attributes.get('disabled') %}
+    {% set attributes = attributes.class('disabled').set('aria-disabled', 'true') %}
+  {% endif %}
+  {{ item.attributes(attributes).class('dropdown-item').open|raw -}}{{- mbi.icons(item.icons, item.text) -}}{{- item.text|raw -}}{{- item.close|raw }}
+{% endif %}

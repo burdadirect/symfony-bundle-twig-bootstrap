@@ -42,6 +42,8 @@ class BootstrapExtension extends AbstractExtension {
       new TwigFilter('bsBtn',      [$this, 'bsRenderBtn'],      $renderOptions),
       new TwigFilter('bsBtn1',     [$this, 'bsRenderBtn1'],     $renderOptions),
       new TwigFilter('bsBtn2',     [$this, 'bsRenderBtn2'],     $renderOptions),
+
+      new TwigFilter('bsDropdownItem', [$this, 'bsRenderDropdownItem'],     $renderOptions),
     ];
   }
 
@@ -333,6 +335,25 @@ class BootstrapExtension extends AbstractExtension {
 
     return $environment->render('@HBMTwigBootstrap/BootstrapGroup/button-group.html.twig', [
       'bsGroup' => $bsGroup,
+    ]);
+  }
+
+  /**
+   * @param Environment $environment
+   * @param BootstrapLink|BootstrapDropdownItem $bsDropdownItem
+   *
+   * @return string|null
+   *
+   * @throws \Twig\Error\LoaderError
+   * @throws \Twig\Error\RuntimeError
+   * @throws \Twig\Error\SyntaxError
+   */
+  public function bsRenderDropdownItem(Environment $environment, BootstrapLink $bsDropdownItem) : ?string {
+    if (!($bsDropdownItem instanceof BootstrapDropdownItem)) {
+      $bsDropdownItem = (new BootstrapDropdownItem())->apply($bsDropdownItem);
+    }
+    return $environment->render('@HBMTwigBootstrap/BootstrapDropdownItem/generic.html.twig', [
+      'item' => $bsDropdownItem,
     ]);
   }
 

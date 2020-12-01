@@ -14,7 +14,11 @@
   {{ bsLink.attributes.hasClass('nav-link') ? bsLink|bsLink : bsLink|bsButton }}
   <div {{ attributesMenu|raw }}>
 {% for item in bsGroup.items %}
-  {{ mbi.dropdownItem(item) }}
+  {% if item is string %}
+    {{ item|raw }}
+  {% else %}
+    {{ item|bsDropdownItem }}
+  {% endif %}
 {% endfor %}
   </div>
 </{{ htmlTag }}>

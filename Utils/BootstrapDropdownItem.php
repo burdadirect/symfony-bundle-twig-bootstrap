@@ -17,6 +17,7 @@ class BootstrapDropdownItem extends BootstrapLink {
   private $header;
 
   public function apply(BootstrapLink $bsLink) {
+    $this->setTag($bsLink->getTag());
     $this->setIcons($bsLink->getIcons());
     $this->setText($bsLink->getText());
     $this->setAttributes(new HtmlAttributes($bsLink->getAttributes()));
