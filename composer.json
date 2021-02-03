@@ -1,5 +1,5 @@
 {
-  "name": "burdanews/symfony-bundle-twig-bootstrap",
+  "name": "burdadirect/symfony-bundle-twig-bootstrap",
   "description": "HBM Twig Bootstrap Bundle - Bootstrap helper for twig.",
   "authors" : [{
     "name" : "Christian Puchinger",
@@ -15,12 +15,12 @@
   "repositories" : [
     {
       "type": "vcs",
-      "url": "git@github.com:burdanews/symfony-bundle-twig-attributes.git"
+      "url": "git@github.com:burdadirect/symfony-bundle-twig-attributes.git"
     }
   ],
   "require": {
     "php": ">=7.3",
-    "burdanews/symfony-bundle-twig-attributes": "dev-master",
+    "burdadirect/symfony-bundle-twig-attributes": "dev-master",
     "symfony/config": "^3.4|^4.4",
     "symfony/dependency-injection": "^3.4|^4.4",
     "symfony/twig-bundle": "^3.4|^4.4"
