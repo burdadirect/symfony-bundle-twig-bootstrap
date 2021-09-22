@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0bf2ae2e49297c0892bcdb93e188ab81",
+    "content-hash": "007c5fd901c3c4bde539fcfd8eff0423",
     "packages": [
         {
             "name": "burdadirect/symfony-bundle-twig-attributes",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/burdadirect/symfony-bundle-twig-attributes.git",
-                "reference": "907576d1be702929829cda831de2a920651c2571"
+                "reference": "b53ec5167e741b99badbb5632f0d989317c611e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/burdadirect/symfony-bundle-twig-attributes/zipball/907576d1be702929829cda831de2a920651c2571",
-                "reference": "907576d1be702929829cda831de2a920651c2571",
+                "url": "https://api.github.com/repos/burdadirect/symfony-bundle-twig-attributes/zipball/b53ec5167e741b99badbb5632f0d989317c611e0",
+                "reference": "b53ec5167e741b99badbb5632f0d989317c611e0",
                 "shasum": ""
             },
             "require": {
@@ -51,7 +51,7 @@
                 "source": "https://github.com/burdadirect/symfony-bundle-twig-attributes/tree/main",
                 "issues": "https://github.com/burdadirect/symfony-bundle-twig-attributes/issues"
             },
-            "time": "2021-09-22T18:06:42+00:00"
+            "time": "2021-09-22T18:17:14+00:00"
         },
         {
             "name": "psr/container",
@@ -2337,7 +2337,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.4.1"
+        "php": "^7.4.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"
