@@ -9,7 +9,7 @@
   "type": "symfony-bundle",
   "autoload": {
     "psr-4": {
-      "HBM\\TwigBootstrapBundle\\": ""
+      "HBM\\TwigBootstrapBundle\\": "src/"
     }
   },
   "repositories" : [
@@ -21,9 +21,9 @@
   "require": {
     "php": "^7.4.0",
     "burdadirect/symfony-bundle-twig-attributes": "dev-main",
-    "symfony/config": "^4.4|^5.2",
-    "symfony/dependency-injection": "^4.4|^5.2",
-    "symfony/twig-bundle": "^4.4|^5.2"
+    "symfony/config": "^5.4",
+    "symfony/dependency-injection": "^5.4",
+    "symfony/twig-bundle": "^5.4"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest"
