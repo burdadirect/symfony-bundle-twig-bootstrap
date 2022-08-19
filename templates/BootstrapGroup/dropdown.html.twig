@@ -1,6 +1,6 @@
 {% import '@HBMTwigBootstrap/macrosBootstrapInternal.html.twig' as mbi %}
 
-{%- set attributes = bsLink.attributes.class('dropdown-toggle') -%}
+{%- set attributes = bsLink.attributes.class('dropdown-toggle', not bsLink.attributes.hasClass('dropdown-toggle-no')) -%}
 {%- set attributes = attributes.setIfEmpty('title', bsLink.text|striptags) -%}
 {%- set attributes = attributes.set('id', bsUuid('-dropdown')) -%}
 {%- set attributes = attributes.set('data-toggle', 'dropdown') -%}
