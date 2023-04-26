@@ -11,12 +11,9 @@ class BootstrapLink extends BootstrapItem {
   /**
    * @var string[]
    */
-  private $icons = [];
+  private array $icons = [];
 
-  /**
-   * @var string
-   */
-  private $text;
+  private ?string $text;
 
   /**
    * BootstrapLink constructor.
@@ -24,7 +21,7 @@ class BootstrapLink extends BootstrapItem {
    * @param string|null $text
    * @param array $config
    */
-  public function __construct($text = NULL, array $config = []) {
+  public function __construct(?string $text = NULL, array $config = []) {
     parent::__construct($config);
     $this->tag = 'a';
     $this->text = $text;

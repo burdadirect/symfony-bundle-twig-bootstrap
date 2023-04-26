@@ -9,15 +9,9 @@ abstract class BootstrapItem {
 
   use HtmlAttributesTrait;
 
-  /**
-   * @var array
-   */
-  protected $config;
+  protected array $config;
 
-  /**
-   * @var HtmlAttributes
-   */
-  protected $attributes;
+  protected HtmlAttributes $attributes;
 
   /**
    * BootstrapItem constructor.
@@ -35,18 +29,18 @@ abstract class BootstrapItem {
    * @param $key
    * @param $value
    *
-   * @return $this
+   * @return static
    */
-  public function attr($key, $value) {
+  public function attr($key, $value): static {
     $this->getAttributes()->set($key, $value);
 
     return $this;
   }
 
   /**
-   * @return $this|HtmlAttributes
+   * @return static|HtmlAttributes
    */
-  public function attributes() {
+  public function attributes(): HtmlAttributes|static {
     if (func_num_args() === 0) {
       return $this->attributes;
     }
@@ -61,9 +55,9 @@ abstract class BootstrapItem {
   /**
    * @param HtmlAttributes $attributes
    *
-   * @return $this
+   * @return static
    */
-  public function setAttributes(HtmlAttributes $attributes) : self {
+  public function setAttributes(HtmlAttributes $attributes): static {
     $this->attributes = $attributes;
 
     return $this;
@@ -72,14 +66,14 @@ abstract class BootstrapItem {
   /**
    * @return HtmlAttributes
    */
-  public function getAttributes() : HtmlAttributes {
+  public function getAttributes(): HtmlAttributes {
     return $this->attributes;
   }
 
   /**
    * @return HtmlAttributes
    */
-  public function getAttributesObject() : HtmlAttributes {
+  public function getAttributesObject(): HtmlAttributes {
     return $this->attributes;
   }
 

@@ -7,15 +7,9 @@ class BootstrapGroup extends BootstrapItem {
   public const MODE_DROPDOWN = 'dropdown';
   public const MODE_BUTTONGROUP = 'buttongroup';
 
-  /**
-   * @var string
-   */
-  private $mode;
+  private ?string $mode;
 
-  /**
-   * @var array
-   */
-  private $items;
+  private array $items = [];
 
   /**
    * BootstrapLink constructor.
@@ -23,7 +17,7 @@ class BootstrapGroup extends BootstrapItem {
    * @param string|null $mode
    * @param array $config
    */
-  public function __construct($mode = NULL, array $config = []) {
+  public function __construct(?string $mode = NULL, array $config = []) {
     parent::__construct($config);
     $this->mode = $mode;
   }
@@ -35,9 +29,9 @@ class BootstrapGroup extends BootstrapItem {
    *
    * @param string|null $mode
    *
-   * @return self
+   * @return static
    */
-  public function setMode(string $mode = NULL) : self {
+  public function setMode(?string $mode = NULL): static {
     $this->mode = $mode;
 
     return $this;
@@ -48,7 +42,7 @@ class BootstrapGroup extends BootstrapItem {
    *
    * @return string|null
    */
-  public function getMode() : ?string {
+  public function getMode(): ?string {
     return $this->mode;
   }
 
@@ -60,9 +54,9 @@ class BootstrapGroup extends BootstrapItem {
    * @param BootstrapItem|string $item
    * @param string|null $key
    *
-   * @return self
+   * @return static
    */
-  public function addItem($item, string $key = NULL) : self {
+  public function addItem(BootstrapItem|string $item, string $key = NULL): static {
     if ($key) {
       $this->items[$key] = $item;
     } else {
@@ -75,11 +69,11 @@ class BootstrapGroup extends BootstrapItem {
   /**
    * Remove item.
    *
-   * @param $keyOrIndex
+   * @param string|int $keyOrIndex
    *
-   * @return self
+   * @return static
    */
-  public function removeItem($keyOrIndex) : self {
+  public function removeItem(string|int $keyOrIndex): static {
     unset($this->items[$keyOrIndex]);
 
     return $this;
@@ -90,9 +84,9 @@ class BootstrapGroup extends BootstrapItem {
    *
    * @param array $items
    *
-   * @return self
+   * @return static
    */
-  public function setItems(array $items) : self {
+  public function setItems(array $items): static {
     $this->items = $items;
 
     return $this;
@@ -103,7 +97,7 @@ class BootstrapGroup extends BootstrapItem {
    *
    * @return array
    */
-  public function getItems() : ?array {
+  public function getItems(): array {
     return $this->items;
   }
 

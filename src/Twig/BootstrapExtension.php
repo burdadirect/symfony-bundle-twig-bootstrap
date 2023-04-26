@@ -14,10 +14,7 @@ use Twig\TwigTest;
 
 class BootstrapExtension extends AbstractExtension {
 
-  /**
-   * @var array
-   */
-  protected $config;
+  protected array $config;
 
   public function __construct($config) {
     $this->config = $config;
@@ -47,7 +44,7 @@ class BootstrapExtension extends AbstractExtension {
     ];
   }
 
-  public function getTests() : array {
+  public function getTests(): array {
     return [
       new TwigTest('bsLink', [$this, 'isBsLink']),
       new TwigTest('bsGroup', [$this, 'isBsGroup']),
@@ -55,7 +52,7 @@ class BootstrapExtension extends AbstractExtension {
     ];
   }
 
-  public function getFunctions() : array {
+  public function getFunctions(): array {
     return [
       new TwigFunction('bsUuid', [$this, 'bsUuid']),
       new TwigFunction('bsLink', [$this, 'bsLink']),
@@ -71,7 +68,7 @@ class BootstrapExtension extends AbstractExtension {
   /**
    * @param Environment $environment
    * @param BootstrapLink $bsLink
-   * @param string $template
+   * @param string|null $template
    * @param array $data
    *
    * @return string|null
@@ -141,7 +138,7 @@ class BootstrapExtension extends AbstractExtension {
    * @throws \Twig\Error\RuntimeError
    * @throws \Twig\Error\SyntaxError
    */
-  public function bsRenderNavItem(Environment $environment, BootstrapLink $bsLink, $attributesContainer = []) : ?string {
+  public function bsRenderNavItem(Environment $environment, BootstrapLink $bsLink, HtmlAttributes|array $attributesContainer = []) : ?string {
     return $this->bsRenderBootstrapLink($environment, $bsLink, '@HBMTwigBootstrap/BootstrapLink/nav-item.html.twig', ['attributesContainer' => $attributesContainer]);
   }
 
@@ -156,7 +153,7 @@ class BootstrapExtension extends AbstractExtension {
    * @throws \Twig\Error\RuntimeError
    * @throws \Twig\Error\SyntaxError
    */
-  public function bsRenderNavItem1(Environment $environment, BootstrapLink $bsLink, $attributesContainer = []) : ?string {
+  public function bsRenderNavItem1(Environment $environment, BootstrapLink $bsLink, HtmlAttributes|array $attributesContainer = []) : ?string {
     return $this->bsRenderNavItem($environment, $bsLink->class('btn btn-primary'), $attributesContainer);
   }
 
@@ -171,7 +168,7 @@ class BootstrapExtension extends AbstractExtension {
    * @throws \Twig\Error\RuntimeError
    * @throws \Twig\Error\SyntaxError
    */
-  public function bsRenderNavItem2(Environment $environment, BootstrapLink $bsLink, $attributesContainer = []) : ?string {
+  public function bsRenderNavItem2(Environment $environment, BootstrapLink $bsLink, HtmlAttributes|array $attributesContainer = []) : ?string {
     return $this->bsRenderNavItem($environment, $bsLink->class('btn btn-secondary'), $attributesContainer);
   }
 
@@ -179,8 +176,8 @@ class BootstrapExtension extends AbstractExtension {
    * @param Environment $environment
    * @param BootstrapLink $bsLink
    * @param array|HtmlAttributes $attributesContainer
-   * @param null $prefix
-   * @param null $suffix
+   * @param string|null $prefix
+   * @param string|null $suffix
    *
    * @return string|null
    *
@@ -188,7 +185,7 @@ class BootstrapExtension extends AbstractExtension {
    * @throws \Twig\Error\RuntimeError
    * @throws \Twig\Error\SyntaxError
    */
-  public function bsRenderNavBtn(Environment $environment, BootstrapLink $bsLink, $attributesContainer = [], $prefix = NULL, $suffix = NULL) : ?string {
+  public function bsRenderNavBtn(Environment $environment, BootstrapLink $bsLink, HtmlAttributes|array $attributesContainer = [], ?string $prefix = NULL, ?string $suffix = NULL) : ?string {
 
     return $this->bsRenderBootstrapLink($environment, $bsLink->class('btn'), '@HBMTwigBootstrap/BootstrapLink/nav-item.html.twig', [
       'attributesContainer' => $attributesContainer,
@@ -243,7 +240,7 @@ class BootstrapExtension extends AbstractExtension {
    * @param Environment $environment
    * @param BootstrapGroup $bsGroup
    * @param BootstrapLink|null $bsLink
-   * @param HtmlAttributes|array $attributesMenu
+   * @param array|HtmlAttributes $attributesMenu
    * @param string $htmlTag
    *
    * @return string|null
@@ -252,7 +249,7 @@ class BootstrapExtension extends AbstractExtension {
    * @throws \Twig\Error\RuntimeError
    * @throws \Twig\Error\SyntaxError
    */
-  private function bsRenderDropdown(Environment $environment, BootstrapGroup $bsGroup, BootstrapLink $bsLink = NULL, $attributesMenu = [], $htmlTag = 'div') : ?string {
+  private function bsRenderDropdown(Environment $environment, BootstrapGroup $bsGroup, BootstrapLink $bsLink = NULL, HtmlAttributes|array $attributesMenu = [], string $htmlTag = 'div') : ?string {
     return $environment->render('@HBMTwigBootstrap/BootstrapGroup/dropdown.html.twig', [
       'bsGroup' => $bsGroup,
       'bsLink' => $bsLink,
@@ -264,8 +261,8 @@ class BootstrapExtension extends AbstractExtension {
   /**
    * @param Environment $environment
    * @param BootstrapGroup $bsGroup
-   * @param BootstrapLink|null $bsLink
-   * @param array $attributesMenu
+   * @param BootstrapLink $bsLink
+   * @param HtmlAttributes|array $attributesMenu
    *
    * @return string|null
    *
@@ -273,7 +270,7 @@ class BootstrapExtension extends AbstractExtension {
    * @throws \Twig\Error\RuntimeError
    * @throws \Twig\Error\SyntaxError
    */
-  public function bsRenderDropdownNavItem(Environment $environment, BootstrapGroup $bsGroup, BootstrapLink $bsLink = NULL, $attributesMenu = []) : ?string {
+  public function bsRenderDropdownNavItem(Environment $environment, BootstrapGroup $bsGroup, BootstrapLink $bsLink, HtmlAttributes|array $attributesMenu = []) : ?string {
     $bsGroup->class('nav-item dropdown');
     $bsLink->class('nav-link')->href('#');
     return $this->bsRenderDropdown($environment, $bsGroup, $bsLink, $attributesMenu, 'li');
@@ -282,8 +279,8 @@ class BootstrapExtension extends AbstractExtension {
   /**
    * @param Environment $environment
    * @param BootstrapGroup $bsGroup
-   * @param BootstrapLink|null $bsLink
-   * @param array $attributesMenu
+   * @param BootstrapLink $bsLink
+   * @param HtmlAttributes|array $attributesMenu
    *
    * @return string|null
    *
@@ -291,7 +288,7 @@ class BootstrapExtension extends AbstractExtension {
    * @throws \Twig\Error\RuntimeError
    * @throws \Twig\Error\SyntaxError
    */
-  public function bsRenderDropdownStandalone(Environment $environment, BootstrapGroup $bsGroup, BootstrapLink $bsLink = NULL, $attributesMenu = []) : ?string {
+  public function bsRenderDropdownStandalone(Environment $environment, BootstrapGroup $bsGroup, BootstrapLink $bsLink, HtmlAttributes|array $attributesMenu = []) : ?string {
     $bsGroup->class('dropdown');
     $bsLink->class('btn')->attr('type', 'button');
     return $this->bsRenderDropdown($environment, $bsGroup, $bsLink, $attributesMenu);
@@ -300,8 +297,8 @@ class BootstrapExtension extends AbstractExtension {
   /**
    * @param Environment $environment
    * @param BootstrapGroup $bsGroup
-   * @param BootstrapLink|null $bsLink
-   * @param array $attributesMenu
+   * @param BootstrapLink $bsLink
+   * @param HtmlAttributes|array $attributesMenu
    *
    * @return string|null
    *
@@ -309,7 +306,7 @@ class BootstrapExtension extends AbstractExtension {
    * @throws \Twig\Error\RuntimeError
    * @throws \Twig\Error\SyntaxError
    */
-  public function bsRenderDropdownButtonGroup(Environment $environment, BootstrapGroup $bsGroup, BootstrapLink $bsLink = NULL, $attributesMenu = []) : ?string {
+  public function bsRenderDropdownButtonGroup(Environment $environment, BootstrapGroup $bsGroup, BootstrapLink $bsLink, HtmlAttributes|array $attributesMenu = []) : ?string {
     $bsGroup->class('btn-group')->attr('role', 'group');
     $bsLink->class('btn')->attr('type', 'button');
     return $this->bsRenderDropdown($environment, $bsGroup, $bsLink, $attributesMenu);
@@ -348,7 +345,7 @@ class BootstrapExtension extends AbstractExtension {
    * @throws \Twig\Error\RuntimeError
    * @throws \Twig\Error\SyntaxError
    */
-  public function bsRenderDropdownItem(Environment $environment, BootstrapLink $bsDropdownItem) : ?string {
+  public function bsRenderDropdownItem(Environment $environment, BootstrapLink|BootstrapDropdownItem $bsDropdownItem) : ?string {
     if (!($bsDropdownItem instanceof BootstrapDropdownItem)) {
       $bsDropdownItem = (new BootstrapDropdownItem())->apply($bsDropdownItem);
     }
@@ -362,40 +359,40 @@ class BootstrapExtension extends AbstractExtension {
   /****************************************************************************/
 
   /**
-   * @param null $postfix
-   * @param null $prefix
+   * @param mixed $postfix
+   * @param mixed $prefix
    * @param bool $more_entropy
    *
    * @return string
    */
-  public function bsUuid($postfix = NULL, $prefix = NULL, $more_entropy = FALSE) {
-    return uniqid($prefix, $more_entropy).$postfix;
+  public function bsUuid(mixed $postfix = null, mixed $prefix = NULL, bool $more_entropy = FALSE): string {
+    return uniqid($prefix ?? '', $more_entropy).$postfix;
   }
 
   /**
-   * @param null|string $text
+   * @param string|null $text
    *
    * @return BootstrapLink
    */
-  public function bsLink($text = NULL) : BootstrapLink {
+  public function bsLink(?string $text = NULL) : BootstrapLink {
     return new BootstrapLink($text, $this->config);
   }
 
   /**
-   * @param null|string $mode
+   * @param string|null $mode
    *
    * @return BootstrapGroup
    */
-  public function bsGroup($mode = NULL) : BootstrapGroup {
+  public function bsGroup(?string $mode = NULL) : BootstrapGroup {
     return new BootstrapGroup($mode, $this->config);
   }
 
   /**
-   * @param null|string $text
+   * @param string|null $text
    *
    * @return BootstrapDropdownItem
    */
-  public function bsDropdownItem($text = NULL) : BootstrapDropdownItem {
+  public function bsDropdownItem(?string $text = NULL) : BootstrapDropdownItem {
     return new BootstrapDropdownItem($text, $this->config);
   }
 

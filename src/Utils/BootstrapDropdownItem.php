@@ -6,17 +6,16 @@ use HBM\TwigAttributesBundle\Utils\HtmlAttributes;
 
 class BootstrapDropdownItem extends BootstrapLink {
 
-  /**
-   * @var bool
-   */
-  private $divider;
+  private ?bool $divider = null;
+
+  private ?string $header = null;
 
   /**
-   * @var string
+   * @param BootstrapLink $bsLink
+   *
+   * @return static
    */
-  private $header;
-
-  public function apply(BootstrapLink $bsLink) {
+  public function apply(BootstrapLink $bsLink): static {
     $this->setTag($bsLink->getTag());
     $this->setIcons($bsLink->getIcons());
     $this->setText($bsLink->getText());
@@ -27,7 +26,10 @@ class BootstrapDropdownItem extends BootstrapLink {
 
   /****************************************************************************/
 
-  public function divider() {
+  /**
+   * @return bool|static|null
+   */
+  public function divider(): bool|static|null {
     if (func_num_args() === 0) {
       return $this->divider;
     }
@@ -37,7 +39,10 @@ class BootstrapDropdownItem extends BootstrapLink {
     return $this;
   }
 
-  public function header() {
+  /**
+   * @return string|static|null
+   */
+  public function header(): string|static|null {
     if (func_num_args() === 0) {
       return $this->header;
     }
