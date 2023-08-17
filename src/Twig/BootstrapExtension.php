@@ -24,23 +24,23 @@ class BootstrapExtension extends AbstractExtension {
     $renderOptions = ['needs_environment' => true, 'is_safe' => ['html']];
 
     return [
-      new TwigFilter('bsDropdownNavItem', [$this, 'bsRenderDropdownNavItem'], $renderOptions),
-      new TwigFilter('bsDropdownStandalone', [$this, 'bsRenderDropdownStandalone'], $renderOptions),
-      new TwigFilter('bsDropdownButtonGroup', [$this, 'bsRenderDropdownButtonGroup'], $renderOptions),
-      new TwigFilter('bsButtonGroup', [$this, 'bsRenderButtonGroup'], $renderOptions),
+      new TwigFilter('bsDropdownNavItem', $this->bsRenderDropdownNavItem(...), $renderOptions),
+      new TwigFilter('bsDropdownStandalone', $this->bsRenderDropdownStandalone(...), $renderOptions),
+      new TwigFilter('bsDropdownButtonGroup', $this->bsRenderDropdownButtonGroup(...), $renderOptions),
+      new TwigFilter('bsButtonGroup', $this->bsRenderButtonGroup(...), $renderOptions),
 
-      new TwigFilter('bsSpan',     [$this, 'bsRenderSpan'],     $renderOptions),
-      new TwigFilter('bsLink',     [$this, 'bsRenderLink'],     $renderOptions),
-      new TwigFilter('bsButton',   [$this, 'bsRenderButton'],   $renderOptions),
-      new TwigFilter('bsNavItem',  [$this, 'bsRenderNavItem'],  $renderOptions),
-      new TwigFilter('bsNavItem1', [$this, 'bsRenderNavItem1'], $renderOptions),
-      new TwigFilter('bsNavItem2', [$this, 'bsRenderNavItem2'], $renderOptions),
-      new TwigFilter('bsNavBtn',   [$this, 'bsRenderNavBtn'],   $renderOptions),
-      new TwigFilter('bsBtn',      [$this, 'bsRenderBtn'],      $renderOptions),
-      new TwigFilter('bsBtn1',     [$this, 'bsRenderBtn1'],     $renderOptions),
-      new TwigFilter('bsBtn2',     [$this, 'bsRenderBtn2'],     $renderOptions),
+      new TwigFilter('bsSpan',     $this->bsRenderSpan(...),     $renderOptions),
+      new TwigFilter('bsLink',     $this->bsRenderLink(...),     $renderOptions),
+      new TwigFilter('bsButton',   $this->bsRenderButton(...),   $renderOptions),
+      new TwigFilter('bsNavItem',  $this->bsRenderNavItem(...),  $renderOptions),
+      new TwigFilter('bsNavItem1', $this->bsRenderNavItem1(...), $renderOptions),
+      new TwigFilter('bsNavItem2', $this->bsRenderNavItem2(...), $renderOptions),
+      new TwigFilter('bsNavBtn',   $this->bsRenderNavBtn(...),   $renderOptions),
+      new TwigFilter('bsBtn',      $this->bsRenderBtn(...),      $renderOptions),
+      new TwigFilter('bsBtn1',     $this->bsRenderBtn1(...),     $renderOptions),
+      new TwigFilter('bsBtn2',     $this->bsRenderBtn2(...),     $renderOptions),
 
-      new TwigFilter('bsDropdownItem', [$this, 'bsRenderDropdownItem'],     $renderOptions),
+      new TwigFilter('bsDropdownItem', $this->bsRenderDropdownItem(...),     $renderOptions),
     ];
   }
 
@@ -54,10 +54,10 @@ class BootstrapExtension extends AbstractExtension {
 
   public function getFunctions(): array {
     return [
-      new TwigFunction('bsUuid', [$this, 'bsUuid']),
-      new TwigFunction('bsLink', [$this, 'bsLink']),
-      new TwigFunction('bsGroup', [$this, 'bsGroup']),
-      new TwigFunction('bsDropdownItem', [$this, 'bsDropdownItem']),
+      new TwigFunction('bsUuid', $this->bsUuid(...)),
+      new TwigFunction('bsLink', $this->bsLink(...)),
+      new TwigFunction('bsGroup', $this->bsGroup(...)),
+      new TwigFunction('bsDropdownItem', $this->bsDropdownItem(...)),
     ];
   }
 
