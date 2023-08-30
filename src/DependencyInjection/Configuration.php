@@ -12,24 +12,24 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
-  /**
-   * {@inheritdoc}
-   */
-  public function getConfigTreeBuilder(): TreeBuilder {
-    $treeBuilder = new TreeBuilder('hbm_twig_bootstrap');
-    $rootNode = $treeBuilder->getRootNode();
+    /**
+     * {@inheritdoc}
+     */
+    public function getConfigTreeBuilder(): TreeBuilder
+    {
+        $treeBuilder = new TreeBuilder('hbm_twig_bootstrap');
+        $rootNode    = $treeBuilder->getRootNode();
 
-    $rootNode
-      ->children()
-        ->arrayNode('fontawesome')->addDefaultsIfNotSet()
+        $rootNode
           ->children()
-            ->scalarNode('default_class')->defaultValue('fas')->end()
+            ->arrayNode('fontawesome')->addDefaultsIfNotSet()
+              ->children()
+                ->scalarNode('default_class')->defaultValue('fas')->end()
+              ->end()
+            ->end()
           ->end()
-        ->end()
-      ->end()
-    ->end();
+        ->end();
 
-    return $treeBuilder;
-  }
-
+        return $treeBuilder;
+    }
 }
