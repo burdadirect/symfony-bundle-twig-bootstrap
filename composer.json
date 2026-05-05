@@ -24,7 +24,7 @@
   ],
   "require": {
     "php": "^8.2.0",
-    "burdadirect/symfony-bundle-twig-attributes": "dev-sf_7",
+    "burdadirect/symfony-bundle-twig-attributes": "dev-main",
     "symfony/config": "^7.0",
     "symfony/dependency-injection": "^7.0",
     "symfony/twig-bundle": "^7.0"
