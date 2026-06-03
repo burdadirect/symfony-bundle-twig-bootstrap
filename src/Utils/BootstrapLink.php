@@ -16,7 +16,7 @@ class BootstrapLink extends BootstrapItem
     /**
      * BootstrapLink constructor.
      */
-    public function __construct(string $text = null, array $config = [])
+    public function __construct(?string $text = null, array $config = [])
     {
         parent::__construct($config);
         $this->tag  = 'a';
