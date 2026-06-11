@@ -14,7 +14,7 @@ class BootstrapGroup extends BootstrapItem
     /**
      * BootstrapLink constructor.
      */
-    public function __construct(string $mode = null, array $config = [])
+    public function __construct(?string $mode = null, array $config = [])
     {
         parent::__construct($config);
         $this->mode = $mode;
@@ -23,7 +23,7 @@ class BootstrapGroup extends BootstrapItem
     /**
      * Set mode.
      */
-    public function setMode(string $mode = null): static
+    public function setMode(?string $mode = null): static
     {
         $this->mode = $mode;
 
@@ -41,7 +41,7 @@ class BootstrapGroup extends BootstrapItem
     /**
      * Add item.
      */
-    public function addItem(BootstrapItem|string $item, string $key = null): static
+    public function addItem(BootstrapItem|string $item, ?string $key = null): static
     {
         if ($key) {
             $this->items[$key] = $item;

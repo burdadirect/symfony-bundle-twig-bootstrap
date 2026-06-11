@@ -72,7 +72,7 @@ class BootstrapExtension extends AbstractExtension
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    private function bsRenderBootstrapLink(Environment $environment, BootstrapLink $bsLink, string $template = null, array $data = []): ?string
+    private function bsRenderBootstrapLink(Environment $environment, BootstrapLink $bsLink, ?string $template = null, array $data = []): ?string
     {
         return $environment->render(
             $template ?: '@HBMTwigBootstrap/BootstrapLink/generic.html.twig',
@@ -145,7 +145,7 @@ class BootstrapExtension extends AbstractExtension
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function bsRenderNavBtn(Environment $environment, BootstrapLink $bsLink, HtmlAttributes|array $attributesContainer = [], string $prefix = null, string $suffix = null): ?string
+    public function bsRenderNavBtn(Environment $environment, BootstrapLink $bsLink, HtmlAttributes|array $attributesContainer = [], ?string $prefix = null, ?string $suffix = null): ?string
     {
         return $this->bsRenderBootstrapLink($environment, $bsLink->class('btn'), '@HBMTwigBootstrap/BootstrapLink/nav-item.html.twig', [
           'attributesContainer' => $attributesContainer,
@@ -189,7 +189,7 @@ class BootstrapExtension extends AbstractExtension
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    private function bsRenderDropdown(Environment $environment, BootstrapGroup $bsGroup, BootstrapLink $bsLink = null, HtmlAttributes|array $attributesMenu = [], string $htmlTag = 'div'): ?string
+    private function bsRenderDropdown(Environment $environment, BootstrapGroup $bsGroup, ?BootstrapLink $bsLink = null, HtmlAttributes|array $attributesMenu = [], string $htmlTag = 'div'): ?string
     {
         return $environment->render('@HBMTwigBootstrap/BootstrapGroup/dropdown.html.twig', [
           'bsGroup'        => $bsGroup,
@@ -281,17 +281,17 @@ class BootstrapExtension extends AbstractExtension
         return uniqid($prefix ?? '', $more_entropy) . $postfix;
     }
 
-    public function bsLink(string $text = null): BootstrapLink
+    public function bsLink(?string $text = null): BootstrapLink
     {
         return new BootstrapLink($text, $this->config);
     }
 
-    public function bsGroup(string $mode = null): BootstrapGroup
+    public function bsGroup(?string $mode = null): BootstrapGroup
     {
         return new BootstrapGroup($mode, $this->config);
     }
 
-    public function bsDropdownItem(string $text = null): BootstrapDropdownItem
+    public function bsDropdownItem(?string $text = null): BootstrapDropdownItem
     {
         return new BootstrapDropdownItem($text, $this->config);
     }
